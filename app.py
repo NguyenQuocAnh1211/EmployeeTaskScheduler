@@ -1,12 +1,12 @@
 from flask import Flask, render_template
 
-app = Flask(nhóm 3)
+# Khai báo template_folder trỏ vào thư mục app/templates
+app = Flask(__name__, template_folder='app/templates', static_folder='app/static')
 
 @app.route('/')
 def home():
     return render_template('index.html')
 
-# Yêu cầu 3: Tạo thêm một trang /about
 @app.route('/about')
 def about():
     return render_template('about.html')
