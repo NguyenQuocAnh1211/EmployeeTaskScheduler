@@ -1,0 +1,39 @@
+/* Yêu cầu 2: Thay đổi màu nền bằng CSS */
+body {
+    background-color: #f4f6f9; /* Màu nền xám xạnh nhạt nhẹ nhàng */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Yêu cầu 4: CSS cho thanh điều hướng (Navbar) */
+.navbar {
+    background-color: #2c3e50;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar .logo {
+    height: 40px; /* Yêu cầu 5: Chỉnh kích thước logo */
+    vertical-align: middle;
+}
+
+.navbar h1 {
+    color: #ffffff;
+    display: inline;
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 15px;
+    font-weight: bold;
+}
+
+.content {
+    padding: 20px;
+}

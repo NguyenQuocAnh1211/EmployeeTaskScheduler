@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Giới thiệu - Nhóm của bạn</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div>
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="logo">
+            <h1>Nhóm 1 - Task Scheduler</h1>
+        </div>
+        <div class="nav-links">
+            <a href="/">Trang chủ</a>
+            <a href="/about">Giới thiệu</a>
+        </div>
+    </nav>
+
+    <div class="content">
+        <h2>Trang Giới Thiệu (About)</h2>
+        <p>Thành viên nhóm:</p>
+        <ul>
+            <li>Nguyễn Quốc Anh</li>
+            <!-- Bổ sung tên các bạn trong nhóm vào đây -->
+        </ul>
+    </div>
+
+</body>
+</html>

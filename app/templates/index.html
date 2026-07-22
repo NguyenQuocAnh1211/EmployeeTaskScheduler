@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang chủ - Nhóm của bạn</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <!-- Yêu cầu 4 & 5: Navbar đơn giản có logo -->
+    <nav class="navbar">
+        <div>
+            <!-- Yêu cầu 5: Đưa logo lên giao diện (để file logo.png vào app/static/images/logo.png) -->
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="logo">
+            
+            <!-- Yêu cầu 1: Thay "Employee Task Scheduler" bằng tên nhóm của bạn -->
+            <h1>Nhóm 1 - Task Scheduler</h1>
+        </div>
+        <div class="nav-links">
+            <a href="/">Trang chủ</a>
+            <a href="/about">Giới thiệu</a>
+        </div>
+    </nav>
+
+    <div class="content">
+        <h2>Chào mừng đến với hệ thống quản lý công việc!</h2>
+        <p>Đây là trang chủ của dự án.</p>
+    </div>
+
+</body>
+</html>

@@ -1,10 +1,15 @@
-from flask import Flask
+from flask import Flask, render_template
 
-app = Flask(__name__)
+app = Flask(nhóm 3)
 
-@app.route("/")
+@app.route('/')
 def home():
-    return "<h1>Employee Task Scheduler</h1>"
+    return render_template('index.html')
 
-if __name__ == "__main__":
+# Yêu cầu 3: Tạo thêm một trang /about
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+if __name__ == '__main__':
     app.run(debug=True)
