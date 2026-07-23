@@ -2,29 +2,247 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Trang chủ - Nhóm của bạn</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Task Scheduler</title>
+
+    <!-- Bootstrap 5 CDN (Tải giao diện chuẩn từ Server ngoài) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS TRỰC TIẾP (TRÁNH LỖI KHÔNG TÌM THẤY FILE STATIC TRÊN FLASK) -->
+    <style>
+        body {
+            background-color: #f4f6f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .sidebar {
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            background: #ffffff;
+            border-right: 1px solid #e5e7eb;
+            z-index: 100;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 25px;
+        }
+        .nav-link {
+            color: #4b5563;
+            font-weight: 500;
+            border-radius: 8px;
+            padding: 10px 15px;
+            margin-bottom: 5px;
+        }
+        .nav-link.active, .nav-link:hover {
+            background-color: #e0e7ff;
+            color: #4f46e5;
+        }
+        .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .bg-opacity-light-primary { background-color: #e0e7ff; color: #4f46e5; }
+        .bg-opacity-light-success { background-color: #d1fae5; color: #059669; }
+        .bg-opacity-light-warning { background-color: #fef3c7; color: #d97706; }
+        .bg-opacity-light-info { background-color: #e0f2fe; color: #0284c7; }
+        .extra-small { font-size: 11px; }
+    </style>
 </head>
 <body>
 
-    <!-- Yêu cầu 4 & 5: Navbar đơn giản có logo -->
-    <nav class="navbar">
-        <div>
-            <!-- Yêu cầu 5: Đưa logo lên giao diện (để file logo.png vào app/static/images/logo.png) -->
-            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="logo">
-            
-            <!-- Yêu cầu 1: Thay "Employee Task Scheduler" bằng tên nhóm của bạn -->
-            <h1>Nhóm 3 - Task Scheduler</h1>
+    <!-- SIDEBAR BÊN TRÁI -->
+    <div class="sidebar p-3 d-flex flex-column">
+        <div class="d-flex align-items-center gap-2 mb-4 px-2">
+            <i class="fa-solid fa-list-check text-primary fa-2x"></i>
+            <h5 class="fw-bold m-0 text-dark">Nhóm 9</h5>
         </div>
-        <div class="nav-links">
-            <a href="/">Trang chủ</a>
-            <a href="/about">Giới thiệu</a>
-        </div>
-    </nav>
+        
+        <ul class="nav flex-column mb-auto">
+            <li class="nav-item">
+                <a href="/" class="nav-link active"><i class="fa-solid fa-chart-pie me-2"></i> Tổng quan</a>
+            </li>
+            <li class="nav-item">
+                <a href="/about" class="nav-link"><i class="fa-solid fa-circle-info me-2"></i> Giới thiệu</a>
+            </li>
+        </ul>
 
-    <div class="content">
-        <h2>Chào mừng đến với hệ thống quản lý công việc!</h2>
-        <p>Đây là trang chủ của dự án.</p>
+        <div class="pt-3 border-top text-muted small">
+            <i class="fa-solid fa-user-gear me-2"></i> Admin
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT BÊN PHẢI -->
+    <div class="main-content">
+        <!-- TOPBAR -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h4 class="fw-bold m-0">Task Scheduler Dashboard</h4>
+            <span class="badge bg-white text-dark border p-2"><i class="fa-regular fa-calendar me-2"></i> Hôm nay</span>
+        </div>
+
+        <!-- 4 KHỐI THỐNG KÊ (TOP CARDS) -->
+        <div class="row g-3 mb-4">
+            <div class="col-md-3">
+                <div class="card p-3">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <small class="text-muted fw-semibold">Tổng nhân viên</small>
+                            <h3 class="fw-bold mb-0">25</h3>
+                            <small class="text-success extra-small"><i class="fa-solid fa-arrow-up"></i> +2 so với tuần trước</small>
+                        </div>
+                        <div class="bg-opacity-light-primary p-3 rounded-3">
+                            <i class="fa-solid fa-users fa-xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card p-3">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <small class="text-muted fw-semibold">Tổng công việc</small>
+                            <h3 class="fw-bold mb-0">18</h3>
+                            <small class="text-success extra-small"><i class="fa-solid fa-arrow-up"></i> +3 so với tuần trước</small>
+                        </div>
+                        <div class="bg-opacity-light-success p-3 rounded-3">
+                            <i class="fa-solid fa-clipboard-list fa-xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card p-3">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <small class="text-muted fw-semibold">Tổng lịch phân công</small>
+                            <h3 class="fw-bold mb-0">62</h3>
+                            <small class="text-success extra-small"><i class="fa-solid fa-arrow-up"></i> +8 so với tuần trước</small>
+                        </div>
+                        <div class="bg-opacity-light-warning p-3 rounded-3">
+                            <i class="fa-solid fa-calendar-check fa-xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card p-3">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <small class="text-muted fw-semibold">Hôm nay làm việc</small>
+                            <h3 class="fw-bold mb-0">12</h3>
+                            <a href="#" class="extra-small text-primary text-decoration-none">Chi tiết &rarr;</a>
+                        </div>
+                        <div class="bg-opacity-light-info p-3 rounded-3">
+                            <i class="fa-solid fa-user-clock fa-xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BỐ CỤC 2 CỘT NỘI DUNG -->
+        <div class="row g-3">
+            <!-- CỘT TRÁI: FORM PHÂN CÔNG & DANH SÁCH -->
+            <div class="col-lg-4">
+                <div class="card p-3 mb-3">
+                    <h6 class="fw-bold text-primary mb-3"><i class="fa-solid fa-plus me-2"></i>Phân công nhanh</h6>
+                    <form>
+                        <div class="mb-2">
+                            <label class="form-label small text-muted">Nhân viên</label>
+                            <select class="form-select form-select-sm">
+                                <option>-- Chọn nhân viên --</option>
+                            </select>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label small text-muted">Công việc</label>
+                            <select class="form-select form-select-sm">
+                                <option>-- Chọn công việc --</option>
+                            </select>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label small text-muted">Ngày làm việc</label>
+                            <input type="date" class="form-control form-control-sm">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small text-muted d-block">Ca làm việc</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="ca" id="ca1" checked>
+                                <label class="form-check-label small" for="ca1">Sáng (07:30 - 11:30)</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="ca" id="ca2">
+                                <label class="form-check-label small" for="ca2">Chiều (13:00 - 17:00)</label>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary btn-sm w-100 fw-bold">Lưu phân công</button>
+                    </form>
+                </div>
+
+                <div class="card p-3">
+                    <h6 class="fw-bold text-primary mb-3"><i class="fa-solid fa-clock me-2"></i>Công việc hôm nay</h6>
+                    <div class="list-group list-group-flush small">
+                        <div class="list-group-item px-0 d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong class="me-2">07:30</strong> Nguyễn Văn A
+                                <div class="text-muted extra-small">Kiểm tra thiết bị</div>
+                            </div>
+                            <span class="badge bg-primary bg-opacity-10 text-primary">Sáng</span>
+                        </div>
+                        <div class="list-group-item px-0 d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong class="me-2">07:30</strong> Trần Thị B
+                                <div class="text-muted extra-small">Chăm sóc khách hàng</div>
+                            </div>
+                            <span class="badge bg-primary bg-opacity-10 text-primary">Sáng</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CỘT PHẢI: BẢNG LỊCH LÀM VIỆC TUẦN -->
+            <div class="col-lg-8">
+                <div class="card p-3">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h6 class="fw-bold text-primary mb-0"><i class="fa-solid fa-calendar-days me-2"></i>Lịch làm việc tuần này</h6>
+                        <span class="small fw-bold text-muted">19/05/2025 - 24/05/2025</span>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered align-middle text-center small">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Nhân viên</th>
+                                    <th>Thứ 2<br><small class="text-muted">19/05</small></th>
+                                    <th>Thứ 3<br><small class="text-muted">20/05</small></th>
+                                    <th>Thứ 4<br><small class="text-muted">21/05</small></th>
+                                    <th>Thứ 5<br><small class="text-muted">22/05</small></th>
+                                    <th>Thứ 6<br><small class="text-muted">23/05</small></th>
+                                    <th>Thứ 7<br><small class="text-muted">24/05</small></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-start fw-bold">nguyễn quốc anh<br><small class="text-muted fw-normal">Nhân viên</small></td>
+                                    <td><span class="badge bg-primary-subtle text-primary p-2 w-100">Kiểm tra thiết bị</span></td>
+                                    <td><span class="badge bg-primary-subtle text-primary p-2 w-100">Sửa chữa</span></td>
+                                    <td><span class="badge bg-primary-subtle text-primary p-2 w-100">Kiểm tra thiết bị</span></td>
+                                    <td><span class="badge bg-primary-subtle text-primary p-2 w-100">Sửa chữa</span></td>
+                                    <td><span class="badge bg-primary-subtle text-primary p-2 w-100">Kiểm tra thiết bị</span></td>
+                                    <td><span class="badge bg-secondary-subtle text-secondary p-2 w-100">Dự phòng</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 </body>

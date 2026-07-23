@@ -1,39 +1,239 @@
-/* Yêu cầu 2: Thay đổi màu nền bằng CSS */
-body {
-    background-color: #f4f6f9; /* Màu nền xám xạnh nhạt nhẹ nhàng */
-    font-family: Arial, sans-serif;
+/* --- RESET & CƠ BẢN --- */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Yêu cầu 4: CSS cho thanh điều hướng (Navbar) */
-.navbar {
-    background-color: #2c3e50;
-    padding: 10px 20px;
+body {
+    background-color: #f4f6f9;
+    color: #333;
+}
+
+/* --- BỐ CỤC CHÍNH --- */
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 250px;
+    background-color: #ffffff;
+    border-right: 1px solid #e0e0e0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+}
+
+.brand {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 30px;
 }
 
-.navbar .logo {
-    height: 40px; /* Yêu cầu 5: Chỉnh kích thước logo */
-    vertical-align: middle;
+.brand img.logo {
+    width: 35px;
+    height: 35px;
 }
 
-.navbar h1 {
-    color: #ffffff;
-    display: inline;
-    margin-left: 10px;
+.brand h2 {
+    color: #0d6efd;
     font-size: 20px;
 }
 
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    margin-left: 15px;
-    font-weight: bold;
+.menu {
+    list-style: none;
+    flex-grow: 1;
 }
 
-.content {
-    padding: 20px;
+.menu li {
+    margin-bottom: 8px;
 }
+
+.menu li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    color: #555;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.menu li.active a, .menu li a:hover {
+    background-color: #e7f1ff;
+    color: #0d6efd;
+}
+
+.user-info {
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    color: #666;
+    font-size: 14px;
+}
+
+/* MAIN CONTENT */
+.main-content {
+    margin-left: 250px;
+    flex: 1;
+    padding: 25px;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.topbar h1 {
+    font-size: 22px;
+    color: #2c3e50;
+}
+
+.topbar .date {
+    background: #fff;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 13px;
+    border: 1px solid #ddd;
+    color: #666;
+}
+
+/* THẺ THỐNG KÊ */
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.stat-card {
+    background: #fff;
+    padding: 18px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+}
+
+.stat-card i {
+    font-size: 28px;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.stat-card.blue i { background: #e7f1ff; color: #0d6efd; }
+.stat-card.green i { background: #e6f4ea; color: #198754; }
+.stat-card.orange i { background: #fff4e5; color: #fd7e14; }
+.stat-card.purple i { background: #f3e8ff; color: #6f42c1; }
+
+.stat-card p {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 2px;
+}
+
+.stat-card h3 {
+    font-size: 22px;
+    color: #222;
+}
+
+/* KHỐI NỘI DUNG 2 CỘT */
+.content-grid {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 20px;
+}
+
+.card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+    margin-bottom: 20px;
+}
+
+.card h3 {
+    font-size: 16px;
+    color: #0d6efd;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* FORM PHÂN CÔNG */
+.simple-form label {
+    display: block;
+    font-size: 13px;
+    color: #555;
+    margin-top: 10px;
+    margin-bottom: 4px;
+}
+
+.simple-form select, .simple-form input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+}
+
+.radio-group {
+    display: flex;
+    gap: 15px;
+    margin: 10px 0;
+    font-size: 13px;
+}
+
+.btn {
+    background: #0d6efd;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    background: #0b5ed7;
+}
+
+/* BẢNG LỊCH */
+.simple-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.simple-table th, .simple-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.simple-table th {
+    background: #f8f9fa;
+    color: #555;
+}
+
+.badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.badge.blue { background: #e7f1ff; color: #0d6efd; }
+.badge.orange { background: #fff4e5; color: #fd7e14; }
